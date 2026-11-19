@@ -89,9 +89,76 @@
             <h2>Розклад уроків на тиждень</h2>
             <div class="board" id="lessonsBoard"></div>
         </section>
+
+        <footer class="site-footer">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Studify</h3>
+                    <p>Локальний навчальний простір для планування тижня, нотаток, оцінок, розкладу уроків і карток повторення.</p>
+                    <div class="social-links">
+                        <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="social-link">Telegram</a>
+                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-link">Discord</a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link">YouTube</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Сторінки</h3>
+                    <ul class="footer-nav">
+                        <li><a href="index.html">📅 План тижня</a></li>
+                        <li><a href="relax.html">🧘 Ментал-релакс</a></li>
+                        <li><a href="notes.html">📚 Нотатки</a></li>
+                        <li><a href="calc.html">🎯 Калькулятор балів</a></li>
+                        <li><a href="schedule.html">🔔 Уроки і дзвінки</a></li>
+                        <li><a href="flashcards.html">🃏 Картки</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>FAQ</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Де зберігаються мої дані?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Усі завдання, нотатки, оцінки, уроки, картки та обрана тема зберігаються локально у твоєму браузері через localStorage без реєстрації.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Чи зникнуть записи після перезавантаження?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ні, після оновлення чи закриття вкладки дані залишаються. Вони можуть очиститися лише при ручному видаленні або очищенні даних браузера.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Як рахується стовпчикова діаграма?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Калькулятор групує оцінки за предметами за 12-бальною шкалою, рахує середній бал по кожному предмету та будує висоту стовпців.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>Studify · Усі дані зберігаються локально у браузері</span>
+            </div>
+        </footer>
     </div>
 
     <script src="js/schedule.js"></script>
+    <script src="js/footer.js"></script>
     <script src="js/theme.js"></script>
 </body>
 </html>
