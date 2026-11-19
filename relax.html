@@ -11,27 +11,37 @@
         <header>
             <h1>Studify</h1>
             <p>Відпочинок та концентрація</p>
-            
-            <nav class="nav-menu">
+
+           <nav class="nav-menu">
     <a href="index.html" class="nav-btn">📅 План тижня</a>
     <a href="relax.html" class="nav-btn">🧘 Ментал-релакс</a>
     <a href="notes.html" class="nav-btn">📚 Нотатки</a>
     <a href="calc.html" class="nav-btn">🎯 Калькулятор балів</a>
-            </nav>
+    <a href="schedule.html" class="nav-btn">🔔 Уроки і дзвінки</a>
+    <a href="flashcards.html" class="nav-btn">🃏 Картки</a>
+</nav>
+
+            <div class="theme-switcher">
+                <button type="button" class="theme-btn active" data-theme="purple">🟣 Фіолетова</button>
+                <button type="button" class="theme-btn" data-theme="orange">🟠 Оранжева</button>
+                <button type="button" class="theme-btn" data-theme="blue">🔵 Синя</button>
+                <button type="button" class="theme-btn" data-theme="cream">🟡 Біло-жовта</button>
+            </div>
         </header>
 
         <section class="relax-card">
             <h2>Дихальна вправа (Таймер)</h2>
             <p>Зроби паузу між завданнями. Слідуй за анімацією кола.</p>
-            
+
             <div class="breathing-circle" id="breathingCircle">
                 <span id="breathingText">Натисни старт</span>
             </div>
-            
+
             <button id="startBreathBtn">Почати вправу</button>
         </section>
     </div>
 
     <script src="js/relax.js"></script>
+    <script src="js/theme.js"></script>
 </body>
 </html>

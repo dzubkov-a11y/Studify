@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studify — Уроки і дзвінки</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Studify</h1>
+            <p>Розклад дзвінків та шкільних уроків</p>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-btn">📅 План тижня</a>
+                <a href="relax.html" class="nav-btn">🧘 Ментал-релакс</a>
+                <a href="notes.html" class="nav-btn">📚 Нотатки</a>
+                <a href="calc.html" class="nav-btn">🎯 Калькулятор балів</a>
+                <a href="schedule.html" class="nav-btn active">🔔 Уроки і дзвінки</a>
+                <a href="flashcards.html" class="nav-btn">🃏 Картки</a>
+            </nav>
+
+            <div class="theme-switcher">
+                <button type="button" class="theme-btn active" data-theme="purple">🟣 Фіолетова</button>
+                <button type="button" class="theme-btn" data-theme="orange">🟠 Оранжева</button>
+                <button type="button" class="theme-btn" data-theme="blue">🔵 Синя</button>
+                <button type="button" class="theme-btn" data-theme="cream">🟡 Біло-жовта</button>
+            </div>
+        </header>
+
+        <section class="task-form-section">
+            <h2>Розклад дзвінків</h2>
+            <div class="bells-grid">
+                <div class="bell-badge"><strong>1 урок</strong><span>08:30 – 09:15</span></div>
+                <div class="bell-badge"><strong>2 урок</strong><span>09:25 – 10:10</span></div>
+                <div class="bell-badge"><strong>3 урок</strong><span>10:30 – 11:15</span></div>
+                <div class="bell-badge"><strong>4 урок</strong><span>11:35 – 12:20</span></div>
+                <div class="bell-badge"><strong>5 урок</strong><span>12:30 – 13:15</span></div>
+                <div class="bell-badge"><strong>6 урок</strong><span>13:25 – 14:10</span></div>
+                <div class="bell-badge"><strong>7 урок</strong><span>14:20 – 15:05</span></div>
+            </div>
+        </section>
+
+        <section class="task-form-section">
+            <h2>Додати урок до розкладу</h2>
+            <form id="lessonForm">
+                <select id="lessonDay" required>
+                    <option value="Понеділок">Понеділок</option>
+                    <option value="Вівторок">Вівторок</option>
+                    <option value="Середа">Середа</option>
+                    <option value="Четвер">Четвер</option>
+                    <option value="П'ятниця">П'ятниця</option>
+                </select>
+                <select id="lessonNum" required>
+                    <option value="1">1 урок (08:30)</option>
+                    <option value="2">2 урок (09:25)</option>
+                    <option value="3">3 урок (10:30)</option>
+                    <option value="4">4 урок (11:35)</option>
+                    <option value="5">5 урок (12:30)</option>
+                    <option value="6">6 урок (13:25)</option>
+                    <option value="7">7 урок (14:20)</option>
+                </select>
+                <select id="lessonSubject" required>
+                    <option value="">Обери предмет...</option>
+                    <option value="Українська мова">Українська мова</option>
+                    <option value="Українська література">Українська література</option>
+                    <option value="Зарубіжна література">Зарубіжна література</option>
+                    <option value="Алгебра">Алгебра</option>
+                    <option value="Геометрія">Геометрія</option>
+                    <option value="Історія України">Історія України</option>
+                    <option value="Всесвітня історія">Всесвітня історія</option>
+                    <option value="Англійська мова">Англійська мова</option>
+                    <option value="Німецька мова">Німецька мова</option>
+                    <option value="Фізика">Фізика</option>
+                    <option value="Хімія">Хімія</option>
+                    <option value="Біологія">Біологія</option>
+                    <option value="Географія">Географія</option>
+                    <option value="Інформатика">Інформатика</option>
+                    <option value="Фізкультура">Фізкультура</option>
+                    <option value="Захист України">Захист України</option>
+                </select>
+                <input type="text" id="lessonRoom" placeholder="Кабінет або нотатка (напр. 305)">
+                <button type="submit">Додати урок</button>
+            </form>
+        </section>
+
+        <section class="board-section">
+            <h2>Розклад уроків на тиждень</h2>
+            <div class="board" id="lessonsBoard"></div>
+        </section>
+    </div>
+
+    <script src="js/schedule.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
