@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow — Нотатки</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>StudyFlow</h1>
+            <p>Швидкі нотатки та шпаргалки</p>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-btn">📅 План тижня</a>
+                <a href="relax.html" class="nav-btn">🧘 Ментал-релакс</a>
+                <a href="notes.html" class="nav-btn active">📚 Нотатки</a>
+                <a href="calc.html" class="nav-btn">🎯 Калькулятор балів</a>
+            </nav>
+        </header>
+
+        <section class="task-form-section">
+            <h2>Додати нотатку</h2>
+            <form id="noteForm">
+                <select id="noteSubject" required>
+                    <option value="">Обери предмет...</option>
+                    <option value="Українська мова">Українська мова</option>
+                    <option value="Українська література">Українська література</option>
+                    <option value="Зарубіжна література">Зарубіжна література</option>
+                    <option value="Алгебра">Алгебра</option>
+                    <option value="Геометрія">Геометрія</option>
+                    <option value="Історія України">Історія України</option>
+                    <option value="Всесвітня історія">Всесвітня історія</option>
+                    <option value="Англійська мова">Англійська мова</option>
+                    <option value="Іврит">Іврит</option>
+                    <option value="Фізика">Фізика</option>
+                    <option value="Хімія">Хімія</option>
+                    <option value="Біологія">Біологія</option>
+                    <option value="Географія">Географія</option>
+                    <option value="Інформатика">Інформатика</option>
+                </select>
+                <input type="text" id="noteText" placeholder="Формула, правило або теза..." required>
+                <button type="submit">Зберегти</button>
+            </form>
+        </section>
+
+        <section class="board-section">
+            <h2>Мої шпаргалки</h2>
+            <div class="notes-grid" id="notesGrid"></div>
+        </section>
+    </div>
+
+    <script src="js/notes.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studify — План тижня</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Studify</h1>
+            <p>Твій тижневий планувальник</p>
+            
+            <nav class="nav-menu">
+    <a href="index.html" class="nav-btn">📅 План тижня</a>
+    <a href="relax.html" class="nav-btn">🧘 Ментал-релакс</a>
+    <a href="notes.html" class="nav-btn">📚 Нотатки</a>
+    <a href="calc.html" class="nav-btn">🎯 Калькулятор балів</a>
+            </nav>
+        </header>
+
+        <section class="task-form-section">
+            <h2>Додати нове завдання</h2>
+            <form id="taskForm">
+                <input type="text" id="taskInput" placeholder="Введи назву завдання..." required>
+                <select id="daySelect">
+                    <option value="Понеділок">Понеділок</option>
+                    <option value="Вівторок">Вівторок</option>
+                    <option value="Середа">Середа</option>
+                    <option value="Четвер">Четвер</option>
+                    <option value="П'ятниця">П'ятниця</option>
+                    <option value="Субота">Субота</option>
+                    <option value="Неділя">Неділя</option>
+                </select>
+                <button type="submit">Додати завдання</button>
+            </form>
+        </section>
+
+        <section class="board-section">
+            <h2>Мій розклад</h2>
+            <div class="board" id="board"></div>
+        </section>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

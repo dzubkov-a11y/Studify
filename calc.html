@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow — Калькулятор балів</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>StudyFlow</h1>
+            <p>Калькулятор середнього бала</p>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-btn">📅 План тижня</a>
+                <a href="relax.html" class="nav-btn">🧘 Ментал-релакс</a>
+                <a href="notes.html" class="nav-btn">📚 Нотатки</a>
+                <a href="calc.html" class="nav-btn active">🎯 Калькулятор балів</a>
+            </nav>
+        </header>
+
+        <section class="task-form-section">
+            <h2>Додати оцінку</h2>
+            <form id="calcForm">
+                <select id="subjectInput" required>
+                    <option value="">Обери предмет...</option>
+                    <option value="Українська мова">Українська мова</option>
+                    <option value="Українська література">Українська література</option>
+                    <option value="Зарубіжна література">Зарубіжна література</option>
+                    <option value="Алгебра">Алгебра</option>
+                    <option value="Геометрія">Геометрія</option>
+                    <option value="Історія України">Історія України</option>
+                    <option value="Всесвітня історія">Всесвітня історія</option>
+                    <option value="Англійська мова">Англійська мова</option>
+                    <option value="Іврит">Іврит</option>
+                    <option value="Фізика">Фізика</option>
+                    <option value="Хімія">Хімія</option>
+                    <option value="Біологія">Біологія</option>
+                    <option value="Географія">Географія</option>
+                    <option value="Інформатика">Інформатика</option>
+                </select>
+                <select id="gradeInput" required>
+                    <option value="">Оцінка (1–12)...</option>
+                    <option value="12">12</option>
+                    <option value="11">11</option>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+                <button type="submit">Додати</button>
+            </form>
+        </section>
+
+        <section class="board-section">
+            <h2>Список оцінок та результат</h2>
+            <div class="calc-result-box" id="resultBox">Середній бал: 0</div>
+            <div class="board" id="gradesBoard"></div>
+        </section>
+    </div>
+
+    <script src="js/calc.js"></script>
+</body>
+</html>
