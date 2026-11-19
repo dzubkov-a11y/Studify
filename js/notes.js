@@ -22,7 +22,10 @@ function showNotes() {
         deleteBtn.textContent = '✕';
         deleteBtn.className = 'btn-delete';
         deleteBtn.onclick = function() {
-            deleteNote(note.id);
+            card.classList.add('removing');
+            setTimeout(function() {
+                deleteNote(note.id);
+            }, 220);
         };
 
         header.appendChild(deleteBtn);

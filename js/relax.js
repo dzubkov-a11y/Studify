@@ -8,12 +8,16 @@ btn.onclick = function() {
     circle.className = 'breathing-circle inhale';
 
     setTimeout(function() {
-        text.textContent = 'Видих... (4с)';
-        circle.className = 'breathing-circle exhale';
+        text.textContent = 'Затримка... (2с)';
 
         setTimeout(function() {
-            text.textContent = 'Готово!';
-            btn.disabled = false;
-        }, 4000);
+            text.textContent = 'Видих... (4с)';
+            circle.className = 'breathing-circle exhale';
+
+            setTimeout(function() {
+                text.textContent = 'Готово!';
+                btn.disabled = false;
+            }, 4000);
+        }, 2000);
     }, 4000);
 };

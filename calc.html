@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyFlow — Калькулятор балів</title>
+    <title>Studify — Калькулятор балів</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>StudyFlow</h1>
-            <p>Калькулятор середнього бала</p>
+            <h1>Studify</h1>
+            <p>Калькулятор середнього бала та статистика</p>
 
             <nav class="nav-menu">
                 <a href="index.html" class="nav-btn">📅 План тижня</a>
@@ -33,7 +33,7 @@
                     <option value="Історія України">Історія України</option>
                     <option value="Всесвітня історія">Всесвітня історія</option>
                     <option value="Англійська мова">Англійська мова</option>
-                    <option value="Іврит">Іврит</option>
+                    <option value="Німецька мова">Німецька мова</option>
                     <option value="Фізика">Фізика</option>
                     <option value="Хімія">Хімія</option>
                     <option value="Біологія">Біологія</option>
@@ -60,8 +60,15 @@
         </section>
 
         <section class="board-section">
-            <h2>Список оцінок та результат</h2>
+            <h2>Результат та стовпчикова статистика</h2>
             <div class="calc-result-box" id="resultBox">Середній бал: 0</div>
+
+            <div class="stats-card">
+                <h3>Стовпчикова діаграма оцінок (з 12)</h3>
+                <div class="bar-chart" id="statsChart"></div>
+            </div>
+
+            <h2 style="margin-top: 28px;">Список оцінок</h2>
             <div class="board" id="gradesBoard"></div>
         </section>
     </div>

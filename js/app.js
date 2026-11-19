@@ -32,7 +32,10 @@ function showTasks() {
                 deleteBtn.className = 'btn-delete';
                 
                 deleteBtn.onclick = function() {
-                    deleteTask(task.id);
+                    li.classList.add('removing');
+                    setTimeout(function() {
+                        deleteTask(task.id);
+                    }, 220);
                 };
 
                 li.appendChild(deleteBtn);

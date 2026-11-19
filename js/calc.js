@@ -5,6 +5,86 @@ let subjectInput = document.getElementById('subjectInput');
 let gradeInput = document.getElementById('gradeInput');
 let gradesBoard = document.getElementById('gradesBoard');
 let resultBox = document.getElementById('resultBox');
+let statsChart = document.getElementById('statsChart');
+
+function animateResult() {
+    resultBox.classList.add('bump');
+    setTimeout(function() {
+        resultBox.classList.remove('bump');
+    }, 250);
+}
+
+function showStats() {
+    statsChart.innerHTML = '';
+
+    if (grades.length === 0) {
+        statsChart.innerHTML = '<p class="empty-stats">Додай оцінки, щоб побачити діаграму.</p>';
+        return;
+    }
+
+    let subjects = [];
+    let sums = [];
+    let counts = [];
+
+    for (let i = 0; i < grades.length; i++) {
+        let subj = grades[i].subject;
+        let val = Number(grades[i].grade);
+        let foundIndex = -1;
+
+        for (let j = 0; j < subjects.length; j++) {
+            if (subjects[j] === subj) {
+                foundIndex = j;
+                break;
+            }
+        }
+
+        if (foundIndex === -1) {
+            subjects.push(subj);
+            sums.push(val);
+            counts.push(1);
+        } else {
+            sums[foundIndex] += val;
+            counts[foundIndex] += 1;
+        }
+    }
+
+    for (let i = 0; i < subjects.length; i++) {
+        let avg = sums[i] / counts[i];
+        let percent = Math.round((avg / 12) * 100);
+        if (percent < 8) {
+            percent = 8;
+        }
+
+        let col = document.createElement('div');
+        col.className = 'bar-col';
+
+        let valueLabel = document.createElement('span');
+        valueLabel.className = 'bar-value';
+        valueLabel.textContent = avg.toFixed(1);
+
+        let track = document.createElement('div');
+        track.className = 'bar-track';
+
+        let fill = document.createElement('div');
+        fill.className = 'bar-fill';
+        fill.style.height = '0%';
+
+        track.appendChild(fill);
+
+        let nameLabel = document.createElement('span');
+        nameLabel.className = 'bar-label';
+        nameLabel.textContent = subjects[i];
+
+        col.appendChild(valueLabel);
+        col.appendChild(track);
+        col.appendChild(nameLabel);
+        statsChart.appendChild(col);
+
+        setTimeout(function() {
+            fill.style.height = percent + '%';
+        }, 40 + i * 60);
+    }
+}
 
 function updateGrades() {
     gradesBoard.innerHTML = '';
@@ -12,6 +92,7 @@ function updateGrades() {
     if (grades.length === 0) {
         resultBox.textContent = 'Середній бал: 0';
         gradesBoard.innerHTML = '<p style="color: #94a3b8;">Поки немає доданих оцінок.</p>';
+        showStats();
         return;
     }
 
@@ -31,7 +112,10 @@ function updateGrades() {
         deleteBtn.textContent = '✕';
         deleteBtn.className = 'btn-delete';
         deleteBtn.onclick = function() {
-            deleteGrade(item.id);
+            li.classList.add('removing');
+            setTimeout(function() {
+                deleteGrade(item.id);
+            }, 220);
         };
 
         li.appendChild(deleteBtn);
@@ -40,7 +124,9 @@ function updateGrades() {
 
     let average = (sum / grades.length).toFixed(2);
     resultBox.textContent = 'Середній бал: ' + average;
+    animateResult();
     gradesBoard.appendChild(list);
+    showStats();
 }
 
 calcForm.onsubmit = function(event) {
