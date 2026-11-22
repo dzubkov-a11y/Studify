@@ -9,6 +9,10 @@
 <body>
     <div class="container">
         <header>
+            <div class="account-corner-wrap">
+                <a href="account.html" class="account-corner-btn">👤 Акаунт</a>
+            </div>
+
             <h1>Studify</h1>
             <p>Калькулятор середнього бала та статистика</p>
 
@@ -19,17 +23,18 @@
                 <a href="calc.html" class="nav-btn active">🎯 Калькулятор балів</a>
                 <a href="schedule.html" class="nav-btn">🔔 Уроки і дзвінки</a>
                 <a href="flashcards.html" class="nav-btn">🃏 Картки</a>
+                <a href="quiz.html" class="nav-btn">🧠 Квіз</a>
             </nav>
 
             <div class="theme-switcher">
-    <button type="button" class="theme-btn active" data-theme="purple">🌌 Нічний аметист</button>
-    <button type="button" class="theme-btn" data-theme="orange">🍂 Теплий бурштин</button>
-    <button type="button" class="theme-btn" data-theme="blue">🧊 Північний фйорд</button>
-    <button type="button" class="theme-btn" data-theme="cream">📜 Льон і шафран</button>
-    <button type="button" class="theme-btn" data-theme="emerald">🌿 Мох і м’ята</button>
-    <button type="button" class="theme-btn" data-theme="rose">🌸 Сутінкова сакура</button>
-    <button type="button" class="theme-btn" data-theme="cyan">🌊 Океанський бриз</button>
-</div>
+                <button type="button" class="theme-btn active" data-theme="purple">🌌 Нічний аметист</button>
+                <button type="button" class="theme-btn" data-theme="orange">🍂 Теплий бурштин</button>
+                <button type="button" class="theme-btn" data-theme="blue">🧊 Північний фйорд</button>
+                <button type="button" class="theme-btn" data-theme="cream">📜 Льон і шафран</button>
+                <button type="button" class="theme-btn" data-theme="emerald">🌿 Мох і м’ята</button>
+                <button type="button" class="theme-btn" data-theme="rose">🌸 Сутінкова сакура</button>
+                <button type="button" class="theme-btn" data-theme="cyan">🌊 Океанський бриз</button>
+            </div>
         </header>
 
         <section class="task-form-section">
@@ -73,7 +78,32 @@
 
         <section class="board-section">
             <h2>Результат та стовпчикова статистика</h2>
-            <div class="calc-result-box" id="resultBox">Середній бал: 0</div>
+            <div class="calc-result-box" id="resultBox">Зважений середній бал: 0</div>
+
+            <div class="target-box">
+                <label for="targetScoreInput">Цільовий бал (1–12):</label>
+                <select id="targetScoreInput">
+                    <option value="">Без цілі</option>
+                    <option value="12">12</option>
+                    <option value="11.5">11.5</option>
+                    <option value="11">11</option>
+                    <option value="10.5">10.5</option>
+                    <option value="10">10</option>
+                    <option value="9.5">9.5</option>
+                    <option value="9">9</option>
+                    <option value="8.5">8.5</option>
+                    <option value="8">8</option>
+                    <option value="7.5">7.5</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+                <span class="target-status" id="targetStatus">Обери цільовий бал від 1 до 12 для підказки.</span>
+            </div>
 
             <div class="stats-card">
                 <h3>Стовпчикова діаграма оцінок (з 12)</h3>
@@ -106,6 +136,8 @@
                         <li><a href="calc.html">🎯 Калькулятор балів</a></li>
                         <li><a href="schedule.html">🔔 Уроки і дзвінки</a></li>
                         <li><a href="flashcards.html">🃏 Картки</a></li>
+                        <li><a href="quiz.html">🧠 Квіз</a></li>
+                        <li><a href="account.html">👤 Акаунт</a></li>
                     </ul>
                 </div>
 
@@ -118,7 +150,7 @@
                                 <span class="faq-icon">+</span>
                             </button>
                             <div class="faq-answer">
-                                <p>Усі завдання, нотатки, оцінки, уроки, картки та обрана тема зберігаються локально у твоєму браузері через localStorage без реєстрації.</p>
+                                <p>Усі завдання, нотатки, оцінки, уроки, картки, тести та обрана тема зберігаються локально у твоєму браузері через localStorage без реєстрації.</p>
                             </div>
                         </div>
 

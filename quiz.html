@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studify — Міні-квіз</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="account-corner-wrap">
+                <a href="account.html" class="account-corner-btn">👤 Акаунт</a>
+            </div>
+
+            <h1>Studify</h1>
+            <p>Самоперевірка та тренажер тестів перед контрольною</p>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-btn">📅 План тижня</a>
+                <a href="relax.html" class="nav-btn">🧘 Ментал-релакс</a>
+                <a href="notes.html" class="nav-btn">📚 Нотатки</a>
+                <a href="calc.html" class="nav-btn">🎯 Калькулятор балів</a>
+                <a href="schedule.html" class="nav-btn">🔔 Уроки і дзвінки</a>
+                <a href="flashcards.html" class="nav-btn">🃏 Картки</a>
+                <a href="quiz.html" class="nav-btn active">🧠 Квіз</a>
+            </nav>
+
+            <div class="theme-switcher">
+                <button type="button" class="theme-btn active" data-theme="purple">🌌 Нічний аметист</button>
+                <button type="button" class="theme-btn" data-theme="orange">🍂 Теплий бурштин</button>
+                <button type="button" class="theme-btn" data-theme="blue">🧊 Північний фйорд</button>
+                <button type="button" class="theme-btn" data-theme="cream">📜 Льон і шафран</button>
+                <button type="button" class="theme-btn" data-theme="emerald">🌿 Мох і м’ята</button>
+                <button type="button" class="theme-btn" data-theme="rose">🌸 Сутінкова сакура</button>
+                <button type="button" class="theme-btn" data-theme="cyan">🌊 Океанський бриз</button>
+            </div>
+        </header>
+
+        <section class="task-form-section">
+            <h2>Створити тестове питання</h2>
+            <form id="quizForm">
+                <select id="quizSubject" required>
+                    <option value="">Обери предмет...</option>
+                    <option value="Українська мова">Українська мова</option>
+                    <option value="Українська література">Українська література</option>
+                    <option value="Зарубіжна література">Зарубіжна література</option>
+                    <option value="Алгебра">Алгебра</option>
+                    <option value="Геометрія">Геометрія</option>
+                    <option value="Історія України">Історія України</option>
+                    <option value="Всесвітня історія">Всесвітня історія</option>
+                    <option value="Англійська мова">Англійська мова</option>
+                    <option value="Німецька мова">Німецька мова</option>
+                    <option value="Фізика">Фізика</option>
+                    <option value="Хімія">Хімія</option>
+                    <option value="Біологія">Біологія</option>
+                    <option value="Географія">Географія</option>
+                    <option value="Інформатика">Інформатика</option>
+                </select>
+
+                <input type="text" id="quizQuestion" placeholder="Текст питання або формулювання задачі..." required>
+
+                <div class="quiz-options-grid">
+                    <input type="text" id="opt0" placeholder="Варіант 1" required>
+                    <input type="text" id="opt1" placeholder="Варіант 2" required>
+                    <input type="text" id="opt2" placeholder="Варіант 3" required>
+                    <input type="text" id="opt3" placeholder="Варіант 4" required>
+                </div>
+
+                <select id="correctOption" required>
+                    <option value="0">Правильна відповідь: Варіант 1</option>
+                    <option value="1">Правильна відповідь: Варіант 2</option>
+                    <option value="2">Правильна відповідь: Варіант 3</option>
+                    <option value="3">Правильна відповідь: Варіант 4</option>
+                </select>
+
+                <button type="submit">Додати питання</button>
+            </form>
+        </section>
+
+        <section class="board-section">
+            <div class="quiz-toolbar">
+                <h2>Режим самоперевірки</h2>
+                <div class="quiz-actions">
+                    <button type="button" class="secondary-btn" id="resetQuizBtn">Скинути спроби</button>
+                </div>
+            </div>
+
+            <div class="quiz-score-box" id="quizScoreBox">Відповідей: 0 з 0 · Точність: 0%</div>
+            <div class="quiz-list" id="quizList"></div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Studify</h3>
+                    <p>Локальний навчальний простір для планування тижня, нотаток, оцінок, розкладу уроків і карток повторення.</p>
+                    <div class="social-links">
+                        <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="social-link">Telegram</a>
+                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-link">Discord</a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link">YouTube</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Сторінки</h3>
+                    <ul class="footer-nav">
+                        <li><a href="index.html">📅 План тижня</a></li>
+                        <li><a href="relax.html">🧘 Ментал-релакс</a></li>
+                        <li><a href="notes.html">📚 Нотатки</a></li>
+                        <li><a href="calc.html">🎯 Калькулятор балів</a></li>
+                        <li><a href="schedule.html">🔔 Уроки і дзвінки</a></li>
+                        <li><a href="flashcards.html">🃏 Картки</a></li>
+                        <li><a href="quiz.html">🧠 Квіз</a></li>
+                        <li><a href="account.html">👤 Акаунт</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>FAQ</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Де зберігаються мої дані?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Усі завдання, нотатки, оцінки, уроки, картки, тести та обрана тема зберігаються локально у твоєму браузері через localStorage без реєстрації.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Чи зникнуть записи після перезавантаження?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ні, після оновлення чи закриття вкладки дані залишаються. Вони можуть очиститися лише при ручному видаленні або очищенні даних браузера.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Як проходить самоперевірка у квізі?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Обираєш один із 4 варіантів відповіді — система одразу показує результат і рахує загальну точність у відсотках.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>Studify · Усі дані зберігаються локально у браузері</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/quiz.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>

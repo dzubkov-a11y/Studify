@@ -6,12 +6,60 @@ let cardFront = document.getElementById('cardFront');
 let cardBack = document.getElementById('cardBack');
 let flashcardsGrid = document.getElementById('flashcardsGrid');
 let flashcardsStats = document.getElementById('flashcardsStats');
+let boardSection = document.querySelector('.board-section');
 
-function updateFlashcards() {
+let cardFilter = 'all'; // 'all' | 'repeat' | 'known'
+
+function ensureCardToolbar() {
+    if (!boardSection || !flashcardsStats || document.getElementById('cardToolbar')) {
+        return;
+    }
+
+    let toolbar = document.createElement('div');
+    toolbar.id = 'cardToolbar';
+    toolbar.className = 'card-toolbar';
+    toolbar.innerHTML =
+        '<div class="card-filter-group">' +
+            '<button type="button" class="pace-btn active" data-filter="all">Усі</button>' +
+            '<button type="button" class="pace-btn" data-filter="repeat">Повторити</button>' +
+            '<button type="button" class="pace-btn" data-filter="known">Знаю</button>' +
+        '</div>' +
+        '<button type="button" class="secondary-btn" id="shuffleCardsBtn">🔀 Перемішати</button>';
+
+    flashcardsStats.insertAdjacentElement('afterend', toolbar);
+
+    let filterBtns = toolbar.querySelectorAll('.pace-btn');
+    for (let i = 0; i < filterBtns.length; i++) {
+        filterBtns[i].onclick = function() {
+            cardFilter = this.getAttribute('data-filter');
+            for (let j = 0; j < filterBtns.length; j++) {
+                filterBtns[j].classList.remove('active');
+            }
+            this.classList.add('active');
+            renderFlashcards();
+        };
+    }
+
+    let shuffleBtn = document.getElementById('shuffleCardsBtn');
+    shuffleBtn.onclick = function() {
+        for (let i = flashcards.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let tmp = flashcards[i];
+            flashcards[i] = flashcards[j];
+            flashcards[j] = tmp;
+        }
+        localStorage.setItem('myFlashcards', JSON.stringify(flashcards));
+        renderFlashcards();
+    };
+}
+
+function renderFlashcards() {
+    ensureCardToolbar();
     flashcardsGrid.innerHTML = '';
 
     let knownCount = 0;
     let repeatCount = 0;
+
     for (let i = 0; i < flashcards.length; i++) {
         if (flashcards[i].status === 'known') {
             knownCount += 1;
@@ -20,23 +68,34 @@ function updateFlashcards() {
         }
     }
 
+    let masterPct = flashcards.length > 0 ? Math.round((knownCount / flashcards.length) * 100) : 0;
     flashcardsStats.textContent =
         'Всього: ' + flashcards.length +
-        ' · Знаю: ' + knownCount +
+        ' · Знаю: ' + knownCount + ' (' + masterPct + '%)' +
         ' · Повторити: ' + repeatCount;
 
-    if (flashcards.length === 0) {
-        flashcardsGrid.innerHTML = '<p class="habit-empty">Додай першу картку — натисни на неї, щоб перевернути.</p>';
+    let visibleCards = [];
+    for (let i = 0; i < flashcards.length; i++) {
+        let c = flashcards[i];
+        if (cardFilter === 'all' || c.status === cardFilter) {
+            visibleCards.push(c);
+        }
+    }
+
+    if (visibleCards.length === 0) {
+        flashcardsGrid.innerHTML = '<p class="empty-filter-msg">Немає карток у вибраній категорії.</p>';
         return;
     }
 
-    for (let i = 0; i < flashcards.length; i++) {
-        let cardData = flashcards[i];
+    for (let i = 0; i < visibleCards.length; i++) {
+        let card = visibleCards[i];
 
-        let wrapper = document.createElement('div');
-        wrapper.className = 'flashcard-item';
-        if (cardData.status) {
-            wrapper.classList.add('status-' + cardData.status);
+        let item = document.createElement('div');
+        item.className = 'flashcard-item';
+        if (card.status === 'known') {
+            item.classList.add('status-known');
+        } else if (card.status === 'repeat') {
+            item.classList.add('status-repeat');
         }
 
         let scene = document.createElement('div');
@@ -48,22 +107,22 @@ function updateFlashcards() {
         let inner = document.createElement('div');
         inner.className = 'flashcard-inner';
 
-        let frontFace = document.createElement('div');
-        frontFace.className = 'flashcard-face flashcard-front';
-        frontFace.innerHTML =
-            '<span class="flashcard-subject">' + cardData.subject + '</span>' +
-            '<p class="flashcard-text">' + cardData.front + '</p>' +
-            '<span class="flashcard-hint">Клікни, щоб перевернути</span>';
+        let front = document.createElement('div');
+        front.className = 'flashcard-face flashcard-front';
+        front.innerHTML =
+            '<span class="flashcard-subject">' + card.subject + '</span>' +
+            '<div class="flashcard-text">' + card.front + '</div>' +
+            '<div class="flashcard-hint">Натисни, щоб перевернути</div>';
 
-        let backFace = document.createElement('div');
-        backFace.className = 'flashcard-face flashcard-back';
-        backFace.innerHTML =
-            '<span class="flashcard-subject">' + cardData.subject + ' · Відповідь</span>' +
-            '<p class="flashcard-text">' + cardData.back + '</p>' +
-            '<span class="flashcard-hint">Клікни, щоб повернути</span>';
+        let back = document.createElement('div');
+        back.className = 'flashcard-face flashcard-back';
+        back.innerHTML =
+            '<span class="flashcard-subject">' + card.subject + ' · Відповідь</span>' +
+            '<div class="flashcard-text">' + card.back + '</div>' +
+            '<div class="flashcard-hint">Натисни, щоб повернути</div>';
 
-        inner.appendChild(frontFace);
-        inner.appendChild(backFace);
+        inner.appendChild(front);
+        inner.appendChild(back);
         scene.appendChild(inner);
 
         let actions = document.createElement('div');
@@ -71,24 +130,18 @@ function updateFlashcards() {
 
         let repeatBtn = document.createElement('button');
         repeatBtn.type = 'button';
-        repeatBtn.className = 'card-status-btn repeat';
-        if (cardData.status === 'repeat') {
-            repeatBtn.classList.add('active');
-        }
+        repeatBtn.className = 'card-status-btn repeat' + (card.status === 'repeat' ? ' active' : '');
         repeatBtn.textContent = 'Повторити';
         repeatBtn.onclick = function() {
-            setCardStatus(cardData.id, 'repeat');
+            setCardStatus(card.id, 'repeat');
         };
 
         let knownBtn = document.createElement('button');
         knownBtn.type = 'button';
-        knownBtn.className = 'card-status-btn known';
-        if (cardData.status === 'known') {
-            knownBtn.classList.add('active');
-        }
+        knownBtn.className = 'card-status-btn known' + (card.status === 'known' ? ' active' : '');
         knownBtn.textContent = 'Знаю';
         knownBtn.onclick = function() {
-            setCardStatus(cardData.id, 'known');
+            setCardStatus(card.id, 'known');
         };
 
         let deleteBtn = document.createElement('button');
@@ -96,9 +149,9 @@ function updateFlashcards() {
         deleteBtn.className = 'btn-delete';
         deleteBtn.textContent = '✕';
         deleteBtn.onclick = function() {
-            wrapper.classList.add('removing');
+            item.classList.add('removing');
             setTimeout(function() {
-                deleteFlashcard(cardData.id);
+                deleteFlashcard(card.id);
             }, 220);
         };
 
@@ -106,9 +159,9 @@ function updateFlashcards() {
         actions.appendChild(knownBtn);
         actions.appendChild(deleteBtn);
 
-        wrapper.appendChild(scene);
-        wrapper.appendChild(actions);
-        flashcardsGrid.appendChild(wrapper);
+        item.appendChild(scene);
+        item.appendChild(actions);
+        flashcardsGrid.appendChild(item);
     }
 }
 
@@ -118,32 +171,28 @@ flashcardForm.onsubmit = function(event) {
     let newCard = {
         id: Date.now(),
         subject: cardSubject.value,
-        front: cardFront.value,
-        back: cardBack.value,
-        status: 'repeat'
+        front: cardFront.value.trim(),
+        back: cardBack.value.trim(),
+        status: 'new'
     };
 
     flashcards.push(newCard);
     localStorage.setItem('myFlashcards', JSON.stringify(flashcards));
-    cardSubject.value = '';
+
     cardFront.value = '';
     cardBack.value = '';
-    updateFlashcards();
+    renderFlashcards();
 };
 
 function setCardStatus(id, status) {
     for (let i = 0; i < flashcards.length; i++) {
         if (flashcards[i].id === id) {
-            if (flashcards[i].status === status) {
-                flashcards[i].status = '';
-            } else {
-                flashcards[i].status = status;
-            }
+            flashcards[i].status = (flashcards[i].status === status) ? 'new' : status;
             break;
         }
     }
     localStorage.setItem('myFlashcards', JSON.stringify(flashcards));
-    updateFlashcards();
+    renderFlashcards();
 }
 
 function deleteFlashcard(id) {
@@ -155,7 +204,7 @@ function deleteFlashcard(id) {
     }
     flashcards = updated;
     localStorage.setItem('myFlashcards', JSON.stringify(flashcards));
-    updateFlashcards();
+    renderFlashcards();
 }
 
-updateFlashcards();
+renderFlashcards();

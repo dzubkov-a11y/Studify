@@ -1,14 +1,10 @@
-let faqQuestions = document.querySelectorAll('.faq-question');
+let faqItems = document.querySelectorAll('.faq-item');
 
-for (let i = 0; i < faqQuestions.length; i++) {
-    faqQuestions[i].onclick = function() {
-        let item = this.parentElement;
-        let isOpen = item.classList.contains('open');
-
-        if (isOpen) {
-            item.classList.remove('open');
-        } else {
-            item.classList.add('open');
-        }
-    };
-}s
+for (let i = 0; i < faqItems.length; i++) {
+    let questionBtn = faqItems[i].querySelector('.faq-question');
+    if (questionBtn) {
+        questionBtn.onclick = function() {
+            faqItems[i].classList.toggle('open');
+        };
+    }
+}

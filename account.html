@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studify — Акаунт</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="account-corner-wrap">
+                <a href="index.html" class="account-corner-btn active-corner">← До плану тижня</a>
+            </div>
+
+            <h1>Studify</h1>
+            <p>Профіль, статистика активності та керування локальними даними</p>
+
+            <div class="theme-switcher">
+                <button type="button" class="theme-btn active" data-theme="purple">🌌 Нічний аметист</button>
+                <button type="button" class="theme-btn" data-theme="orange">🍂 Теплий бурштин</button>
+                <button type="button" class="theme-btn" data-theme="blue">🧊 Північний фйорд</button>
+                <button type="button" class="theme-btn" data-theme="cream">📜 Льон і шафран</button>
+                <button type="button" class="theme-btn" data-theme="emerald">🌿 Мох і м’ята</button>
+                <button type="button" class="theme-btn" data-theme="rose">🌸 Сутінкова сакура</button>
+                <button type="button" class="theme-btn" data-theme="cyan">🌊 Океанський бриз</button>
+            </div>
+        </header>
+
+        <section class="task-form-section">
+            <h2>Профіль учня</h2>
+            <form id="profileForm" class="profile-form">
+                <div class="profile-grid">
+                    <input type="text" id="profileName" placeholder="Твоє ім’я або нікнейм...">
+                    <input type="text" id="profileGroup" placeholder="Клас / курс / напрям (напр. 10-Б або Web)...">
+                    <select id="profileFavSubject">
+                        <option value="">Улюблений предмет...</option>
+                        <option value="Українська мова">Українська мова</option>
+                        <option value="Українська література">Українська література</option>
+                        <option value="Зарубіжна література">Зарубіжна література</option>
+                        <option value="Алгебра">Алгебра</option>
+                        <option value="Геометрія">Геометрія</option>
+                        <option value="Історія України">Історія України</option>
+                        <option value="Всесвітня історія">Всесвітня історія</option>
+                        <option value="Англійська мова">Англійська мова</option>
+                        <option value="Німецька мова">Німецька мова</option>
+                        <option value="Фізика">Фізика</option>
+                        <option value="Хімія">Хімія</option>
+                        <option value="Біологія">Біологія</option>
+                        <option value="Географія">Географія</option>
+                        <option value="Інформатика">Інформатика</option>
+                    </select>
+                    <input type="text" id="profileGoal" placeholder="Головна мета на тиждень...">
+                </div>
+                <button type="submit">Зберегти профіль</button>
+            </form>
+        </section>
+
+        <section class="board-section">
+            <div class="account-hero" id="accountHero"></div>
+
+            <h2>Зведення активності у Studify</h2>
+            <div class="account-stats-grid" id="accountStatsGrid"></div>
+
+            <h2 style="margin-top: 28px;">Резервна копія та дані</h2>
+            <div class="account-data-panel">
+                <p class="section-hint">Збережи всі записи у файл JSON, щоб перенести на інший пристрій або зробити бекап перед очищенням браузера.</p>
+                <div class="account-data-actions">
+                    <button type="button" class="secondary-btn" id="exportDataBtn">⬇ Експортувати JSON</button>
+                    <label class="secondary-btn import-label" for="importDataInput">⬆ Імпортувати JSON</label>
+                    <input type="file" id="importDataInput" accept=".json,application/json" style="display: none;">
+                    <button type="button" class="secondary-btn danger-btn" id="clearAllDataBtn">🗑 Очистити всі дані</button>
+                </div>
+                <p class="account-status-msg" id="accountStatusMsg"></p>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Studify</h3>
+                    <p>Локальний навчальний простір для планування тижня, нотаток, оцінок, розкладу уроків і карток повторення.</p>
+                    <div class="social-links">
+                        <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="social-link">Telegram</a>
+                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-link">Discord</a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link">YouTube</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Сторінки</h3>
+                    <ul class="footer-nav">
+                        <li><a href="index.html">📅 План тижня</a></li>
+                        <li><a href="relax.html">🧘 Ментал-релакс</a></li>
+                        <li><a href="notes.html">📚 Нотатки</a></li>
+                        <li><a href="calc.html">🎯 Калькулятор балів</a></li>
+                        <li><a href="schedule.html">🔔 Уроки і дзвінки</a></li>
+                        <li><a href="flashcards.html">🃏 Картки</a></li>
+                        <li><a href="quiz.html">🧠 Квіз</a></li>
+                        <li><a href="account.html">👤 Акаунт</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>FAQ</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Де зберігаються мої дані?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Усі завдання, нотатки, оцінки, уроки, картки, тести та обрана тема зберігаються локально у твоєму браузері через localStorage без реєстрації.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Чи зникнуть записи після перезавантаження?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ні, після оновлення чи закриття вкладки дані залишаються. Вони можуть очиститися лише при ручному видаленні або очищенні даних браузера.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Навіщо потрібен експорт у JSON?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Він дозволяє створити локальну резервну копію всіх твоїх нотаток, завдань, карток, тестів та оцінок і відновити їх у будь-який момент.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>Studify · Усі дані зберігаються локально у браузері</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/account.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
