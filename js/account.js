@@ -23,13 +23,13 @@ let STORAGE_KEYS = [
 ];
 
 let THEME_LABELS = {
-    purple: '🌌 Нічний аметист',
-    orange: '🍂 Теплий бурштин',
-    blue: '🧊 Північний фйорд',
+    purple: '🎨 Індиго і теракота',
+    orange: '🍊 Персик і шавлія',
+    blue: '🌊 Кобальт і корал',
     cream: '📜 Льон і шафран',
-    emerald: '🌿 Мох і м’ята',
-    rose: '🌸 Сутінкова сакура',
-    cyan: '🌊 Океанський бриз'
+    emerald: '🌿 Ботаніка і мідь',
+    rose: '🌸 Сакура і слива',
+    cyan: '🌙 Вечірній мультиколор'
 };
 
 function safeParse(key, fallback) {
